@@ -68,8 +68,8 @@ For a detailed explanation of the project architecture and the search process, p
 
 4.  **Set up the database:**
     *   Create a MySQL database named `canvasiligan_db`.
-    *   Execute the `schema.sql` script to create all necessary tables.
-    *   Execute the `insert_sql.sql` script to populate initial data.
+    *   Execute the `canvasiligan schema.sql` script to create all necessary tables.
+    *   Execute the `canvasiligan data.sql` script to populate initial data.
     *   Update the database credentials in `semantic_search_server.py` and `server/db.js`.
 
 5.  **Generate embeddings for the products:**
@@ -117,8 +117,6 @@ This project includes several Python scripts for managing the machine learning c
 *   `semantic_search_server.py`: A persistent Flask server that loads the ML model and a Faiss index into memory. It serves search results via a `/search` API endpoint, providing highly scalable and fast responses.
 *   `generate_embeddings.py`: Connects to the database, generates embeddings for products, and stores them in the `products` table.
 *   `semantic_search.py`: A legacy script that performs a one-off semantic search. It is no longer used by the main application but can be useful for direct testing.
-*   `list_categories.py`: A utility script to list all available product categories from the database.
-*   `list_tables.py`: A utility script to list all tables in the connected database.
 
 ## Security
 
