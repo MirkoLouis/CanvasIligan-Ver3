@@ -1,0 +1,4 @@
+Label,# Samples,Average,Min,Max,Std. Dev.,Error %,Throughput,Received KB/sec,Sent KB/sec,Avg. Bytes
+Project Based Query,10,115,103,161,16.24,0.000%,1.09830,7.52,0.17,7012.0
+Specific Query,10,60,55,65,2.89,0.000%,1.10436,7.00,0.15,6487.0
+TOTAL,20,87,55,161,29.96,0.000%,2.18245,14.39,0.32,6749.5

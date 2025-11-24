@@ -1,0 +1,195 @@
+PS D:\Performance Tools\sqlmapproject-sqlmap-f44aef3> python sqlmap.py -u "https://9z80p7fg-3000.asse.devtunnels.ms/api/store-page/1?q=test" --dbs --batch --level 3 --risk 3
+        ___
+       __H__
+ ___ ___[)]_____ ___ ___  {1.9.11.3#dev}
+|_ -| . ["]     | .'| . |
+|___|_  ["]_|_|_|__,|  _|
+      |_|V...       |_|   https://sqlmap.org
+
+[!] legal disclaimer: Usage of sqlmap for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program
+
+[*] starting @ 21:28:05 /2025-11-16/
+
+[21:28:13] [INFO] testing connection to the target URL
+you have not declared cookie(s), while server wants to set its own ('.Tunnels.Relay.WebForwarding.Cookies=CfDJ8Cs4yar...AjSXcC0jne'). Do you want to use those [Y/n] Y
+[21:28:14] [INFO] testing if the target URL content is stable
+[21:28:15] [INFO] target URL content is stable
+[21:28:15] [INFO] testing if GET parameter 'q' is dynamic
+[21:28:15] [INFO] GET parameter 'q' appears to be dynamic
+[21:28:16] [WARNING] heuristic (basic) test shows that GET parameter 'q' might not be injectable
+[21:28:17] [INFO] testing for SQL injection on GET parameter 'q'
+[21:28:17] [INFO] testing 'AND boolean-based blind - WHERE or HAVING clause'
+[21:28:37] [INFO] testing 'OR boolean-based blind - WHERE or HAVING clause'
+[21:28:52] [INFO] testing 'OR boolean-based blind - WHERE or HAVING clause (NOT)'
+[21:29:08] [INFO] testing 'AND boolean-based blind - WHERE or HAVING clause (subquery - comment)'
+[21:29:15] [INFO] testing 'OR boolean-based blind - WHERE or HAVING clause (subquery - comment)'
+[21:29:22] [INFO] testing 'AND boolean-based blind - WHERE or HAVING clause (comment)'
+[21:29:28] [INFO] testing 'OR boolean-based blind - WHERE or HAVING clause (comment)'
+[21:29:34] [INFO] testing 'AND boolean-based blind - WHERE or HAVING clause (MySQL comment)'
+[21:29:42] [INFO] testing 'OR boolean-based blind - WHERE or HAVING clause (MySQL comment)'
+[21:29:50] [INFO] testing 'OR boolean-based blind - WHERE or HAVING clause (NOT - MySQL comment)'
+[21:29:59] [INFO] testing 'AND boolean-based blind - WHERE or HAVING clause (Microsoft Access comment)'
+[21:30:08] [INFO] testing 'OR boolean-based blind - WHERE or HAVING clause (Microsoft Access comment)'
+[21:30:15] [INFO] testing 'MySQL RLIKE boolean-based blind - WHERE, HAVING, ORDER BY or GROUP BY clause'
+[21:30:30] [INFO] testing 'MySQL AND boolean-based blind - WHERE, HAVING, ORDER BY or GROUP BY clause (MAKE_SET)'
+[21:31:08] [WARNING] there is a possibility that the target (or WAF/IPS) is dropping 'suspicious' requests
+[21:31:08] [CRITICAL] connection timed out to the target URL. sqlmap is going to retry the request(s)
+[21:31:43] [CRITICAL] connection timed out to the target URL. sqlmap is going to retry the request(s)
+[21:32:14] [CRITICAL] connection timed out to the target URL. sqlmap is going to retry the request(s)
+[21:32:49] [INFO] testing 'MySQL OR boolean-based blind - WHERE, HAVING, ORDER BY or GROUP BY clause (MAKE_SET)'
+[21:33:05] [INFO] testing 'PostgreSQL AND boolean-based blind - WHERE or HAVING clause (CAST)'
+[21:33:21] [INFO] testing 'PostgreSQL OR boolean-based blind - WHERE or HAVING clause (CAST)'
+[21:33:32] [INFO] testing 'Oracle AND boolean-based blind - WHERE or HAVING clause (CTXSYS.DRITHSX.SN)'
+[21:33:44] [INFO] testing 'Oracle OR boolean-based blind - WHERE or HAVING clause (CTXSYS.DRITHSX.SN)'
+[21:33:56] [INFO] testing 'SQLite AND boolean-based blind - WHERE, HAVING, GROUP BY or HAVING clause (JSON)'
+[21:34:13] [INFO] testing 'SQLite OR boolean-based blind - WHERE, HAVING, GROUP BY or HAVING clause (JSON)'
+[21:34:29] [INFO] testing 'Boolean-based blind - Parameter replace (original value)'
+[21:34:29] [INFO] testing 'PostgreSQL boolean-based blind - Parameter replace'
+[21:34:30] [INFO] testing 'Microsoft SQL Server/Sybase boolean-based blind - Parameter replace'
+[21:34:31] [INFO] testing 'Oracle boolean-based blind - Parameter replace'
+[21:34:31] [INFO] testing 'Informix boolean-based blind - Parameter replace'
+[21:34:32] [INFO] testing 'Microsoft Access boolean-based blind - Parameter replace'
+[21:34:33] [INFO] testing 'Boolean-based blind - Parameter replace (DUAL)'
+[21:34:33] [INFO] testing 'Boolean-based blind - Parameter replace (DUAL - original value)'
+[21:34:34] [INFO] testing 'Boolean-based blind - Parameter replace (CASE)'
+[21:34:35] [INFO] testing 'Boolean-based blind - Parameter replace (CASE - original value)'
+[21:34:36] [INFO] testing 'MySQL >= 5.0 boolean-based blind - ORDER BY, GROUP BY clause'
+[21:34:37] [INFO] testing 'MySQL >= 5.0 boolean-based blind - ORDER BY, GROUP BY clause (original value)'
+[21:34:45] [INFO] testing 'MySQL < 5.0 boolean-based blind - ORDER BY, GROUP BY clause'
+[21:34:45] [INFO] testing 'PostgreSQL boolean-based blind - ORDER BY, GROUP BY clause'
+[21:34:46] [INFO] testing 'Microsoft SQL Server/Sybase boolean-based blind - ORDER BY clause'
+[21:34:48] [INFO] testing 'Oracle boolean-based blind - ORDER BY, GROUP BY clause'
+[21:34:50] [INFO] testing 'HAVING boolean-based blind - WHERE, GROUP BY clause'
+[21:35:06] [INFO] testing 'PostgreSQL boolean-based blind - Stacked queries'
+[21:35:16] [INFO] testing 'Microsoft SQL Server/Sybase boolean-based blind - Stacked queries (IF)'
+[21:35:25] [INFO] testing 'MySQL >= 5.0 AND error-based - WHERE, HAVING, ORDER BY or GROUP BY clause (FLOOR)'
+[21:35:31] [INFO] testing 'MySQL >= 5.0 OR error-based - WHERE, HAVING, ORDER BY or GROUP BY clause (FLOOR)'
+[21:35:37] [INFO] testing 'MySQL >= 5.1 AND error-based - WHERE, HAVING, ORDER BY or GROUP BY clause (EXTRACTVALUE)'
+[21:35:43] [INFO] testing 'MySQL >= 5.1 OR error-based - WHERE, HAVING, ORDER BY or GROUP BY clause (EXTRACTVALUE)'
+[21:35:49] [INFO] testing 'MySQL >= 5.1 AND error-based - WHERE, HAVING, ORDER BY or GROUP BY clause (UPDATEXML)'
+[21:35:55] [INFO] testing 'MySQL >= 5.1 OR error-based - WHERE, HAVING, ORDER BY or GROUP BY clause (UPDATEXML)'
+[21:36:01] [INFO] testing 'MySQL >= 4.1 AND error-based - WHERE, HAVING, ORDER BY or GROUP BY clause (FLOOR)'
+[21:36:07] [INFO] testing 'MySQL >= 4.1 OR error-based - WHERE or HAVING clause (FLOOR)'
+[21:36:13] [INFO] testing 'PostgreSQL AND error-based - WHERE or HAVING clause'
+[21:36:19] [INFO] testing 'PostgreSQL OR error-based - WHERE or HAVING clause'
+[21:36:27] [INFO] testing 'Microsoft SQL Server/Sybase AND error-based - WHERE or HAVING clause (IN)'
+[21:36:59] [CRITICAL] connection timed out to the target URL. sqlmap is going to retry the request(s)
+[21:37:31] [CRITICAL] connection timed out to the target URL. sqlmap is going to retry the request(s)
+[21:38:03] [CRITICAL] connection timed out to the target URL. sqlmap is going to retry the request(s)
+[21:38:06] [INFO] testing 'Microsoft SQL Server/Sybase OR error-based - WHERE or HAVING clause (IN)'
+[21:38:40] [CRITICAL] connection timed out to the target URL. sqlmap is going to retry the request(s)
+[21:38:44] [INFO] testing 'Microsoft SQL Server/Sybase AND error-based - WHERE or HAVING clause (CONVERT)'
+[21:38:54] [INFO] testing 'Microsoft SQL Server/Sybase OR error-based - WHERE or HAVING clause (CONVERT)'
+[21:39:00] [INFO] testing 'Microsoft SQL Server/Sybase AND error-based - WHERE or HAVING clause (CONCAT)'
+[21:39:07] [INFO] testing 'Microsoft SQL Server/Sybase OR error-based - WHERE or HAVING clause (CONCAT)'
+[21:39:12] [INFO] testing 'Oracle AND error-based - WHERE or HAVING clause (XMLType)'
+[21:39:18] [INFO] testing 'Oracle OR error-based - WHERE or HAVING clause (XMLType)'
+[21:39:23] [INFO] testing 'Oracle AND error-based - WHERE or HAVING clause (UTL_INADDR.GET_HOST_ADDRESS)'
+[21:39:29] [INFO] testing 'Oracle OR error-based - WHERE or HAVING clause (UTL_INADDR.GET_HOST_ADDRESS)'
+[21:39:35] [INFO] testing 'Oracle AND error-based - WHERE or HAVING clause (CTXSYS.DRITHSX.SN)'
+[21:39:40] [INFO] testing 'Oracle OR error-based - WHERE or HAVING clause (CTXSYS.DRITHSX.SN)'
+[21:39:47] [INFO] testing 'Firebird AND error-based - WHERE or HAVING clause'
+[21:39:53] [INFO] testing 'MonetDB AND error-based - WHERE or HAVING clause'
+[21:40:00] [INFO] testing 'Vertica AND error-based - WHERE or HAVING clause'
+[21:40:05] [INFO] testing 'IBM DB2 AND error-based - WHERE or HAVING clause'
+[21:40:11] [INFO] testing 'ClickHouse AND error-based - WHERE, HAVING, ORDER BY or GROUP BY clause'
+[21:40:17] [INFO] testing 'MySQL >= 5.1 error-based - PROCEDURE ANALYSE (EXTRACTVALUE)'
+[21:40:23] [INFO] testing 'MySQL >= 5.0 error-based - Parameter replace (FLOOR)'
+[21:40:23] [INFO] testing 'MySQL >= 5.1 error-based - Parameter replace (EXTRACTVALUE)'
+[21:40:23] [INFO] testing 'PostgreSQL error-based - Parameter replace'
+[21:40:24] [INFO] testing 'Microsoft SQL Server/Sybase error-based - Parameter replace'
+[21:40:24] [INFO] testing 'Oracle error-based - Parameter replace'
+[21:40:24] [INFO] testing 'MySQL >= 5.1 error-based - ORDER BY, GROUP BY clause (EXTRACTVALUE)'
+[21:40:25] [INFO] testing 'MySQL >= 4.1 error-based - ORDER BY, GROUP BY clause (FLOOR)'
+[21:40:25] [INFO] testing 'PostgreSQL error-based - ORDER BY, GROUP BY clause'
+[21:40:26] [INFO] testing 'Microsoft SQL Server/Sybase error-based - Stacking (EXEC)'
+[21:40:29] [INFO] testing 'Generic inline queries'
+[21:40:29] [INFO] testing 'MySQL inline queries'
+[21:40:30] [INFO] testing 'PostgreSQL inline queries'
+[21:40:30] [INFO] testing 'Microsoft SQL Server/Sybase inline queries'
+[21:40:30] [INFO] testing 'Oracle inline queries'
+[21:40:30] [INFO] testing 'SQLite inline queries'
+[21:40:31] [INFO] testing 'Firebird inline queries'
+[21:40:31] [INFO] testing 'ClickHouse inline queries'
+[21:40:31] [INFO] testing 'MySQL >= 5.0.12 stacked queries (comment)'
+[21:40:35] [INFO] testing 'MySQL >= 5.0.12 stacked queries'
+[21:40:53] [INFO] testing 'MySQL >= 5.0.12 stacked queries (query SLEEP - comment)'
+[21:40:57] [INFO] testing 'MySQL < 5.0.12 stacked queries (BENCHMARK - comment)'
+[21:41:01] [INFO] testing 'PostgreSQL > 8.1 stacked queries (comment)'
+[21:41:05] [INFO] testing 'PostgreSQL stacked queries (heavy query - comment)'
+[21:41:10] [INFO] testing 'PostgreSQL < 8.2 stacked queries (Glibc - comment)'
+[21:41:13] [INFO] testing 'Microsoft SQL Server/Sybase stacked queries (comment)'
+[21:41:17] [INFO] testing 'Microsoft SQL Server/Sybase stacked queries (DECLARE - comment)'
+[21:41:23] [INFO] testing 'Oracle stacked queries (DBMS_PIPE.RECEIVE_MESSAGE - comment)'
+[21:41:27] [INFO] testing 'Oracle stacked queries (heavy query - comment)'
+[21:41:31] [INFO] testing 'IBM DB2 stacked queries (heavy query - comment)'
+[21:41:35] [INFO] testing 'SQLite > 2.0 stacked queries (heavy query - comment)'
+[21:41:39] [INFO] testing 'MySQL >= 5.0.12 AND time-based blind (query SLEEP)'
+[21:41:47] [INFO] testing 'MySQL >= 5.0.12 OR time-based blind (query SLEEP)'
+[21:41:57] [INFO] testing 'MySQL >= 5.0.12 AND time-based blind (SLEEP)'
+[21:42:05] [INFO] testing 'MySQL >= 5.0.12 OR time-based blind (SLEEP)'
+[21:42:13] [INFO] testing 'MySQL >= 5.0.12 AND time-based blind (SLEEP - comment)'
+[21:42:18] [INFO] testing 'MySQL >= 5.0.12 OR time-based blind (SLEEP - comment)'
+[21:42:24] [INFO] testing 'MySQL >= 5.0.12 AND time-based blind (query SLEEP - comment)'
+[21:42:38] [INFO] GET parameter 'q' appears to be 'MySQL >= 5.0.12 AND time-based blind (query SLEEP - comment)' injectable
+it looks like the back-end DBMS is 'MySQL'. Do you want to skip test payloads specific for other DBMSes? [Y/n] Y
+for the remaining tests, do you want to include all tests for 'MySQL' extending provided level (3) value? [Y/n] Y
+[21:42:38] [INFO] testing 'Generic UNION query (NULL) - 1 to 20 columns'
+[21:42:38] [INFO] automatically extending ranges for UNION query injection technique tests as there is at least one other (potential) technique found
+[21:42:46] [INFO] testing 'Generic UNION query (random number) - 1 to 20 columns'
+[21:42:54] [INFO] testing 'Generic UNION query (NULL) - 21 to 40 columns'
+[21:43:01] [INFO] testing 'Generic UNION query (random number) - 21 to 40 columns'
+[21:43:08] [INFO] testing 'Generic UNION query (NULL) - 41 to 60 columns'
+[21:43:14] [INFO] checking if the injection point on GET parameter 'q' is a false positive
+[21:43:14] [WARNING] false positive or unexploitable injection point detected
+[21:43:14] [WARNING] GET parameter 'q' does not seem to be injectable
+[21:43:14] [INFO] testing if parameter 'User-Agent' is dynamic
+[21:43:15] [WARNING] parameter 'User-Agent' does not appear to be dynamic
+[21:43:15] [WARNING] heuristic (basic) test shows that parameter 'User-Agent' might not be injectable
+[21:43:15] [INFO] testing for SQL injection on parameter 'User-Agent'
+[21:43:15] [INFO] testing 'AND boolean-based blind - WHERE or HAVING clause'
+[21:43:23] [INFO] testing 'OR boolean-based blind - WHERE or HAVING clause'
+[21:43:38] [INFO] testing 'OR boolean-based blind - WHERE or HAVING clause (NOT)'
+[21:43:45] [INFO] testing 'AND boolean-based blind - WHERE or HAVING clause (subquery - comment)'
+[21:43:49] [INFO] testing 'OR boolean-based blind - WHERE or HAVING clause (subquery - comment)'
+[21:43:57] [INFO] testing 'AND boolean-based blind - WHERE or HAVING clause (comment)'
+[21:44:01] [INFO] testing 'OR boolean-based blind - WHERE or HAVING clause (comment)'
+[21:44:09] [INFO] testing 'Boolean-based blind - Parameter replace (original value)'
+[21:44:10] [INFO] testing 'Boolean-based blind - Parameter replace (DUAL)'
+[21:44:10] [INFO] testing 'Boolean-based blind - Parameter replace (DUAL - original value)'
+[21:44:10] [INFO] testing 'Boolean-based blind - Parameter replace (CASE)'
+[21:44:11] [INFO] testing 'Boolean-based blind - Parameter replace (CASE - original value)'
+[21:44:11] [INFO] testing 'HAVING boolean-based blind - WHERE, GROUP BY clause'
+[21:44:18] [INFO] testing 'Generic inline queries'
+it is recommended to perform only basic UNION tests if there is not at least one other (potential) technique found. Do you want to reduce the number of requests? [Y/n] Y
+[21:44:19] [INFO] testing 'Generic UNION query (NULL) - 1 to 10 columns'
+[21:44:35] [INFO] testing 'Generic UNION query (random number) - 1 to 10 columns'
+[21:45:13] [CRITICAL] connection timed out to the target URL. sqlmap is going to retry the request(s)
+[21:45:44] [CRITICAL] connection timed out to the target URL. sqlmap is going to retry the request(s)
+[21:45:50] [WARNING] parameter 'User-Agent' does not seem to be injectable
+[21:45:50] [INFO] testing if parameter 'Referer' is dynamic
+[21:45:51] [WARNING] parameter 'Referer' does not appear to be dynamic
+[21:45:51] [WARNING] heuristic (basic) test shows that parameter 'Referer' might not be injectable
+[21:45:51] [INFO] testing for SQL injection on parameter 'Referer'
+[21:45:51] [INFO] testing 'AND boolean-based blind - WHERE or HAVING clause'
+[21:46:25] [CRITICAL] connection timed out to the target URL. sqlmap is going to retry the request(s)
+[21:46:58] [CRITICAL] connection timed out to the target URL. sqlmap is going to retry the request(s)
+[21:46:59] [INFO] testing 'OR boolean-based blind - WHERE or HAVING clause'
+[21:47:26] [INFO] testing 'OR boolean-based blind - WHERE or HAVING clause (NOT)'
+[21:47:33] [INFO] testing 'AND boolean-based blind - WHERE or HAVING clause (subquery - comment)'
+[21:47:37] [INFO] testing 'OR boolean-based blind - WHERE or HAVING clause (subquery - comment)'
+[21:47:45] [INFO] testing 'AND boolean-based blind - WHERE or HAVING clause (comment)'
+[21:47:49] [INFO] testing 'OR boolean-based blind - WHERE or HAVING clause (comment)'
+[21:47:58] [INFO] testing 'Boolean-based blind - Parameter replace (original value)'
+[21:47:58] [INFO] testing 'Boolean-based blind - Parameter replace (DUAL)'
+[21:47:58] [INFO] testing 'Boolean-based blind - Parameter replace (DUAL - original value)'
+[21:47:59] [INFO] testing 'Boolean-based blind - Parameter replace (CASE)'
+[21:47:59] [INFO] testing 'Boolean-based blind - Parameter replace (CASE - original value)'
+[21:47:59] [INFO] testing 'HAVING boolean-based blind - WHERE, GROUP BY clause'
+[21:48:06] [INFO] testing 'Generic inline queries'
+[21:48:07] [INFO] testing 'Generic UNION query (NULL) - 1 to 10 columns'
+[21:48:21] [INFO] testing 'Generic UNION query (random number) - 1 to 10 columns'
+[21:49:07] [WARNING] parameter 'Referer' does not seem to be injectable
+[21:49:07] [CRITICAL] all tested parameters do not appear to be injectable. Try to increase values for '--level'/'--risk' options if you wish to perform more tests. If you suspect that there is some kind of protection mechanism involved (e.g. WAF) maybe you could try to use option '--tamper' (e.g. '--tamper=space2comment') and/or switch '--random-agent'
+
+[*] ending @ 21:49:07 /2025-11-16/

@@ -1,0 +1,141 @@
+/* Store Page Styles */
+header {
+    position: static;
+    transform: none;
+    width: auto;
+    margin-bottom: 2rem;
+    margin-top: -2px;
+}
+
+header h1 {
+    font-size: 2.5em;
+}
+
+#store-details-header {
+    display: grid;
+    grid-template-columns: 35% 30% 35%;
+    align-items: center;
+}
+
+#store-banner {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.border-primary {
+    border-color: #8491D9 !important;
+}
+
+.store-info {
+    text-align: left;
+}
+
+.store-info h1 {
+    color: #8491D9;
+}
+
+.iligan-color {
+    color: #8491D9;
+}
+
+h1#store-name, #store-location, #store-contact {
+    margin-bottom: 0px;
+}
+
+#store-search-form {
+    width: 100%;
+}
+
+#products-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+}
+
+.product-card {
+    background-color: #F9FAFB;
+    border: 2.5px solid #8491D9;
+    border-radius: 5px;
+    padding: 1rem;
+    text-align: center;
+    height: 350px;
+    width: 250px;
+}
+
+.product-card img {
+    max-width: 100%;
+    height: 125px;
+    margin-bottom: 0.5rem;
+    border-radius: 4px;
+}
+
+.product-card h3 {
+    color: #212529;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-top: 0.5rem;
+}
+
+.product-card p {
+    color: #212529;
+    font-size: 0.9rem;
+}
+
+.product-card .product-price {
+    color: #35a65b;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
+}
+
+
+#pagination-container {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
+
+.page-item {
+    margin: 0 0.25rem;
+}
+
+.page-link {
+    display: block;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #555;
+    background-color: #333;
+    color: #F9FAFB;
+    text-decoration: none;
+    font-size: 1.5em;
+}
+
+.page-link:hover {
+    background-color: #F9FAFB;
+    color: #212529;
+}
+
+.page-item.active .page-link {
+    z-index: 3;
+    color: #F9FAFB;
+    background-color: #8491D9;
+    border-color: #8491D9;
+}
+
+.page-item.disabled .page-link {
+    color: #6c757d;
+    pointer-events: none;
+    background-color: #2c2c2c;
+    border-color: #333;
+}
+
+#store-image {
+    height: 250px;
+}

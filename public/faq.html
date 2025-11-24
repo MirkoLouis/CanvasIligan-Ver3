@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CanvasIligan - FAQ</title>
+    <link href="/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .accordion-button {
+            background-color: #f8f9fa;
+            color: #212529;
+        }
+        .accordion-button:not(.collapsed) {
+            background-color: #e9ecef;
+            color: #212529;
+        }
+        .accordion-button:focus {
+            box-shadow: 0 0 0 0.25rem rgba(132, 145, 217, 0.5);
+            border-color: #8491D9;
+        }
+        .accordion-item {
+            background-color: #ffffff;
+            border: 1px solid #dee2e6;
+        }
+        .accordion-body {
+            background-color: #ffffff;
+            color: #212529;
+        }
+
+    </style>
+</head>
+<body class="">
+
+    <main class="container my-4 text-center" style="position: relative; top: auto; left: auto; transform: none; width: auto; max-width: none;">
+        <header style="position: relative; bottom: -15px; left: auto; transform: none; width: auto;">
+            <a href="/" class="text-decoration-none">
+                <h1 class="fw-bold" style="font-size: 5em;"><span class="text-dark">Canvas</span><span class="iligan-color">Iligan</span></h1>
+            </a>
+        </header>
+        <h2 class="mt-4 mb-5">Frequently Asked Questions (FAQ)</h2>
+    </main>
+
+    <div class="container" style="max-width: 800px; margin-top: -25px;">
+        <div class="accordion" id="faqAccordion">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                        How do I use CanvasIligan?
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Using CanvasIligan is simple. Just enter what you're looking for in the search bar on the main page and press "Search". You can search for a product by its name (e.g., "Arduino Uno"), its purpose (e.g., "microcontroller for a school project"), or a general description (e.g., "a small board to control LEDs"). The system will find the most relevant products available in local stores. You can also filter results by category and navigate through pages using the controls at the bottom.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        What is CanvasIligan?
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        CanvasIligan is a specialized search engine designed to help you find electronic products and components within Iligan City. Unlike traditional search engines that just match keywords, CanvasIligan uses artificial intelligence to understand the *meaning* of your search. This allows it to provide more accurate and relevant results, helping you discover the right products for your projects, even if you don't know the exact terminology.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        How does the semantic search work?
+                    </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Our system uses a technology called "semantic search." Here's a simple breakdown:
+                        <ol class="ps-4">
+                            <li><strong>Indexing:</strong> We first analyze the name and description of every product from our partner stores and convert them into numerical representations called "vector embeddings." These vectors capture the product's meaning.</li>
+                            <li><strong>Querying:</strong> When you enter a search query, we convert your text into a similar vector.</li>
+                            <li><strong>Matching:</strong> The system then rapidly searches for the product vectors that are closest in meaning to your query vector.</li>
+                        </ol>
+                        This process allows us to find "vibration motor" when you search for "a small thing that shakes," because the meanings are semantically similar.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFour">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        Does CanvasIligan sell products?
+                    </button>
+                </h2>
+                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        No, CanvasIligan is not an e-commerce store. We are a search and discovery platform. Our goal is to connect you with local stores in Iligan City that have the products you need. The search results will show you product details and which store(s) it is available at.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer mt-5">
+        <div class="footer-content">
+            <div class="footer-left">
+                <a href="faq.html" class="text-decoration-none text-white">FAQ</a>
+                <a href="overview.html" class="ms-3 text-decoration-none text-white">How It Works</a>
+            </div>
+            <div class="footer-center">
+                <p class="mb-0 text-white">&copy; 2025 CanvasIligan. All rights reserved.</p>
+            </div>
+            <div class="footer-right">
+                <a href="team.html" class="text-decoration-none text-white">About Our Team</a>
+                <a href="https://forms.gle/u6dZ4bKU6cCecMov5" class="ms-3 text-decoration-none text-white" target="_blank">Review Our Site</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

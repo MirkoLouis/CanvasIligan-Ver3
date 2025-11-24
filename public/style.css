@@ -1,0 +1,306 @@
+/* This file contains the styles for the application. */
+
+:root {
+    --logo-font-size: 5em;
+}
+
+/* This block defines the base styles for the body and main content area. */
+body {
+    background-color: #F9FAFB;
+    color: #212529;
+    font-family: sans-serif;
+}
+
+main {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    width: 90vw;
+    max-width: 800px;
+    transform: translate(-50%, -50%);
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    text-align: center;
+}
+
+/* This block defines the styles for the header and logo. */
+body.search-active main {
+    transform: translate(-50%, calc(-50vh + 100px));
+}
+
+header {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+}
+
+header h1 {
+    font-size: var(--logo-font-size);
+    transition: font-size 0.6s ease;
+}
+
+header h1 .iligan-color {
+    color: #8491D9;
+}
+
+body.search-active header h1 {
+    font-size: calc(var(--logo-font-size) * 0.5);
+}
+
+.subtitle {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    margin-top: 1.5rem;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    font-size: 1rem;
+    color: #6B7280;
+}
+
+body.search-active .subtitle {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* This block defines the styles for the search form and results. */
+#results-container {
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 80%;
+    opacity: 0;
+    transition: opacity 0.5s ease 0.5s;
+}
+
+body.search-active #results-container {
+    opacity: 1;
+}
+
+.form-control, .form-control:focus {
+    background-color: #F9FAFB;
+    color: #212529;
+}
+
+.form-control::placeholder {
+    color: #212529;
+}
+
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:focus {
+    background-color: #8491D9 !important;
+    border-color: #8491D9 !important;
+    box-shadow: none !important;
+}
+
+.result-item {
+    border-bottom: 1px solid #333;
+    padding: 1rem 0;
+    text-align: left;
+}
+
+.result-item:last-child {
+    border-bottom: none;
+}
+
+.result-title {
+    color: #212529;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    margin: 0;
+}
+
+.result-store {
+    color: #212529;
+    font-size: 0.9rem;
+}
+
+.result-description {
+    color: #212529;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+}
+
+.result-price {
+    color: #ffffff;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.result-image-placeholder img {
+    max-width: 100px;
+    height: auto;
+    border-radius: 4px;
+}
+
+.result-address {
+    color: #212529;
+    font-size: 0.85rem;
+}
+
+/* This block defines the styles for the custom scrollbar. */
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.5);
+    -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+}
+
+
+.store-popup {
+    display: none;
+    position: fixed;
+    background-color: #F9FAFB;
+    border: 2.5px solid #8491D9;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    text-align: center;
+}
+
+.store-popup h3 {
+    margin-top: 0;
+    font-size: 1.2rem;
+    color: #8491D9;
+}
+
+.store-popup p {
+    margin: 5px 0;
+    color: #212529;
+}
+
+.store-popup p .stars {
+    color: gold;
+    font-size: 1.2em;
+}
+
+.store-popup img {
+    max-width: 100%;
+    height: 150px;
+    border-radius: 4px;
+    margin-top: 10px;
+    object-fit: cover;
+}
+/* This block defines the styles for the product price and store name. */
+.product-price {
+    font-size: 1.5em;
+    color: #35a65b;
+    font-weight: bold;
+}
+
+.product-card .product-price {
+    font-size: 1.5em;
+    color: #35a65b;
+    font-weight: bold;
+}
+
+
+.store-name {
+    font-size: 1.25em;
+    color: #8491D9;
+    font-weight: bold;
+}
+
+#loading-spinner {
+    position: absolute;
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust for the element's own size */
+    z-index: 10; /* Ensure it's above other content if needed */
+}
+
+/* Pagination styles from store.css */
+#pagination-container {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
+
+.page-item {
+    margin: 0 0.25rem;
+}
+
+.page-link {
+    display: block;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #555;
+    background-color: #333;
+    color: #F9FAFB;
+    text-decoration: none;
+    font-size: 1.5em;
+}
+
+.page-link:hover {
+    background-color: #F9FAFB;
+    color: #212529;
+}
+
+.page-item.active .page-link {
+    z-index: 3;
+    color: #F9FAFB;
+    background-color: #8491D9;
+    border-color: #8491D9;
+}
+
+.page-item.disabled .page-link {
+    color: #6c757d;
+    pointer-events: none;
+    background-color: #2c2c2c;
+    border-color: #333;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    color: #70757a;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    background-color: #8491D9;
+    padding: 1rem 0;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+.footer-left {
+    text-align: left;
+    flex: 1;
+}
+
+.footer-center {
+    text-align: center;
+    flex: 1;
+}
+
+.footer-right {
+    text-align: right;
+    flex: 1;
+}
+
+body.search-active .footer {
+    opacity: 0;
+    pointer-events: none;
+}
