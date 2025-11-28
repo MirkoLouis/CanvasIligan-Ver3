@@ -10,12 +10,16 @@ CanvasIligan is a project designed to solve the problem of finding specific prod
 
 For a detailed explanation of the project architecture and the search process, please see the [Project Overview](PROJECT_OVERVIEW.md).
 
-### Key Features
-Homepage
+### Screenshots
 
-Search Results
+#### Homepage
+<img width="1910" height="880" alt="Homepage" src="https://github.com/user-attachments/assets/5b30513c-3ad2-4a7b-baad-0ca37d5e3968" />
 
-Store Page
+#### Search Results
+<img width="1910" height="880" alt="Search Results" src="https://github.com/user-attachments/assets/712eb7ad-ea0d-4001-9753-75284ce7346e" />
+
+#### Store Page
+<img width="1910" height="880" alt="Store Page" src="https://github.com/user-attachments/assets/ba0cdcf1-a8e3-4ace-8e47-935d41aeefbd" />
 
 ### Key Features
 
