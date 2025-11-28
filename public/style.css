@@ -22,6 +22,14 @@ body {
     transition: padding-top 1s cubic-bezier(0.4, 0, 0.2, 1); 
 }
 
+.content-wrapper2 {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding-top: 3.5vh; 
+    transition: padding-top 1s cubic-bezier(0.4, 0, 0.2, 1); 
+}
+
 body.search-active .content-wrapper {
     padding-top: 2rem;
 }
@@ -74,7 +82,6 @@ body.search-active .subtitle {
 
 /* This block defines the styles for the search form and results. */
 #results-container {
-    /* No longer absolute */
     width: 100%;
     max-width: 80%;
     margin-left: auto;
