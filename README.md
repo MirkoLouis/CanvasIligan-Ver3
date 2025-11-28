@@ -139,7 +139,7 @@ The application has been hardened against common web vulnerabilities by implemen
 *   **Anti-Clickjacking:** The `X-Frame-Options` header is used to prevent the application from being embedded in iframes, protecting against clickjacking attacks.
 *   **CORS Configuration:** Cross-Origin Resource Sharing is restricted to only allow requests from the frontend application.
 *   **Header Security:** The `X-Powered-By` header is disabled to avoid leaking information about the server technology.
-*   **API Rate Limiting:** A tiered rate-limiting strategy is implemented to protect against abuse and ensure server stability. A global limit of 300 requests per 15 minutes applies to all routes, while the `/api/search` endpoint has a stricter limit of 20 requests per minute.
+*   **API Rate Limiting:** A tiered rate-limiting strategy is implemented to protect against abuse and ensure server stability. A global limit of 500 requests per 15 minutes applies to all routes, while the `/api/search` endpoint has a stricter limit of 20 requests per minute.
 
 ## License
 

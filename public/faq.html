@@ -31,17 +31,17 @@
     </style>
 </head>
 <body class="">
+    <div class="content-wrapper">
+        <main class="container my-4 text-center" style="position: relative; top: auto; left: auto; transform: none; width: auto; max-width: none;">
+            <header style="position: relative; bottom: -15px; left: auto; transform: none; width: auto;">
+                <a href="/" class="text-decoration-none">
+                    <h1 class="fw-bold" style="font-size: 5em;"><span class="text-dark">Canvas</span><span class="iligan-color">Iligan</span></h1>
+                </a>
+            </header>
+            <h2 class="mt-4">Frequently Asked Questions (FAQ)</h2>
+        </main>
 
-    <main class="container my-4 text-center" style="position: relative; top: auto; left: auto; transform: none; width: auto; max-width: none;">
-        <header style="position: relative; bottom: -15px; left: auto; transform: none; width: auto;">
-            <a href="/" class="text-decoration-none">
-                <h1 class="fw-bold" style="font-size: 5em;"><span class="text-dark">Canvas</span><span class="iligan-color">Iligan</span></h1>
-            </a>
-        </header>
-        <h2 class="mt-4 mb-5">Frequently Asked Questions (FAQ)</h2>
-    </main>
-
-    <div class="container" style="max-width: 800px; margin-top: -25px;">
+    <div class="container" style="max-width: 800px;">
         <div class="accordion" id="faqAccordion">
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingOne">
@@ -72,18 +72,12 @@
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingThree">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        How does the semantic search work?
+                        Why was this created?
                     </button>
                 </h2>
                 <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
                     <div class="accordion-body">
-                        Our system uses a technology called "semantic search." Here's a simple breakdown:
-                        <ol class="ps-4">
-                            <li><strong>Indexing:</strong> We first analyze the name and description of every product from our partner stores and convert them into numerical representations called "vector embeddings." These vectors capture the product's meaning.</li>
-                            <li><strong>Querying:</strong> When you enter a search query, we convert your text into a similar vector.</li>
-                            <li><strong>Matching:</strong> The system then rapidly searches for the product vectors that are closest in meaning to your query vector.</li>
-                        </ol>
-                        This process allows us to find "vibration motor" when you search for "a small thing that shakes," because the meanings are semantically similar.
+                        CanvasIligan was created to assist individuals and consumers, particularly those who are unfamiliar with specific product categories, in easily finding what they need. Our goal is to help users discover products, understand where they can purchase them locally, and know their approximate prices within the local market.
                     </div>
                 </div>
             </div>
@@ -102,6 +96,7 @@
             </div>
         </div>
     </div>
+</div>
 
     <footer class="footer mt-5">
         <div class="footer-content">
