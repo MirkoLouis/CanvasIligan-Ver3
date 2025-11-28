@@ -49,7 +49,7 @@ app.use((req, res, next) => {
   res.setHeader(
     'Content-Security-Policy',
     // Defines allowed sources for various types of content
-    "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://tiles.openfreemap.org; connect-src 'self' http://localhost:5000 https://tiles.openfreemap.org; img-src 'self' https://via.placeholder.com https://placehold.co blob: data: https://tiles.openfreemap.org; font-src 'self' https://tiles.openfreemap.org; worker-src 'self' blob:; frame-src 'self';"
+    "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://tiles.openfreemap.org; connect-src 'self' http://localhost:5000 https://tiles.openfreemap.org; img-src 'self' http://localhost:3000 https://via.placeholder.com https://placehold.co blob: data: https://tiles.openfreemap.org; font-src 'self' https://tiles.openfreemap.org; worker-src 'self' blob:; frame-src 'self';"
   );
   // X-Frame-Options prevents clickjacking attacks by disallowing the page to be embedded in iframes.
   res.setHeader('X-Frame-Options', 'DENY');
@@ -109,6 +109,62 @@ app.get('/api/placeholder/product', (req, res) => {
     const backgroundColor = '#EEEEEE';
     const textColor = '#333333';
     const fontSize = 40;
+
+    // Sanitize text to prevent potential XSS in SVG
+    const sanitizedText = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+    const svg = `
+        <svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
+            <rect width="100%" height="100%" fill="${backgroundColor}" />
+            <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="${textColor}" font-size="${fontSize}" font-family="sans-serif">
+                ${sanitizedText}
+            </text>
+        </svg>
+    `;
+    res.setHeader('Content-Type', 'image/svg+xml');
+    res.send(svg);
+});
+
+/**
+ * @route GET /api/placeholder/store
+ * @description Generates a dynamic SVG placeholder image for a store.
+ * @query {string} text - The text to display on the placeholder.
+ */
+app.get('/api/placeholder/store', (req, res) => {
+    const { text = 'No Image' } = req.query;
+    const width = 300;
+    const height = 300;
+    const backgroundColor = '#EEEEEE';
+    const textColor = '#333333';
+    const fontSize = 40;
+
+    // Sanitize text to prevent potential XSS in SVG
+    const sanitizedText = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+    const svg = `
+        <svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
+            <rect width="100%" height="100%" fill="${backgroundColor}" />
+            <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="${textColor}" font-size="${fontSize}" font-family="sans-serif">
+                ${sanitizedText}
+            </text>
+        </svg>
+    `;
+    res.setHeader('Content-Type', 'image/svg+xml');
+    res.send(svg);
+});
+
+/**
+ * @route GET /api/placeholder/banner
+ * @description Generates a dynamic SVG placeholder image for a store banner.
+ * @query {string} text - The text to display on the placeholder.
+ */
+app.get('/api/placeholder/banner', (req, res) => {
+    const { text = 'No Image' } = req.query;
+    const width = 820;
+    const height = 312;
+    const backgroundColor = '#EEEEEE';
+    const textColor = '#333333';
+    const fontSize = 50;
 
     // Sanitize text to prevent potential XSS in SVG
     const sanitizedText = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -259,9 +315,24 @@ app.get('/api/popup-details', async (req, res) => {
             return res.status(404).send({ error: 'Store not found' });
         }
 
+        const storeDetails = storeResult[0];
+
+        // Rewrite store image URL to use the local placeholder service
+        if (storeDetails.store_image_url && storeDetails.store_image_url.includes('placehold.co')) {
+            try {
+                const url = new URL(storeDetails.store_image_url);
+                const text = url.searchParams.get('text');
+                if (text) {
+                    storeDetails.store_image_url = `/api/placeholder/store?text=${encodeURIComponent(text)}`;
+                }
+            } catch (e) {
+                console.error(`Error parsing placeholder URL: ${storeDetails.store_image_url}`, e);
+            }
+        }
+
         // Combine results into a single JSON response
         res.json({
-            storeDetails: storeResult[0],
+            storeDetails: storeDetails,
             priceDetails: priceResult.length > 0 ? priceResult[0] : null // Handle case where price might not be found
         });
 
@@ -317,11 +388,51 @@ app.get('/api/store-page/:id', async (req, res) => {
         const [totalResult] = await db.promise().query(totalProductsQuery, totalQueryParams);
 
         const totalProducts = totalResult[0].total;
+        const store = storeResult[0];
+
+        // Rewrite store and banner image URLs
+        if (store.store_image_url && store.store_image_url.includes('placehold.co')) {
+            try {
+                const url = new URL(store.store_image_url);
+                const text = url.searchParams.get('text');
+                if (text) {
+                    store.store_image_url = `/api/placeholder/store?text=${encodeURIComponent(text)}`;
+                }
+            } catch (e) {
+                console.error(`Error parsing placeholder URL: ${store.store_image_url}`, e);
+            }
+        }
+        if (store.banner_image_url && store.banner_image_url.includes('placehold.co')) {
+            try {
+                const url = new URL(store.banner_image_url);
+                const text = url.searchParams.get('text');
+                if (text) {
+                    store.banner_image_url = `/api/placeholder/banner?text=${encodeURIComponent(text)}`;
+                }
+            } catch (e) {
+                console.error(`Error parsing placeholder URL: ${store.banner_image_url}`, e);
+            }
+        }
+
+        const rewrittenProducts = productsResult.map(product => {
+            if (product.image_url && product.image_url.includes('placehold.co')) {
+                try {
+                    const url = new URL(product.image_url);
+                    const text = url.searchParams.get('text');
+                    if (text) {
+                        product.image_url = `/api/placeholder/product?text=${encodeURIComponent(text)}`;
+                    }
+                } catch (e) {
+                    console.error(`Error parsing placeholder URL: ${product.image_url}`, e);
+                }
+            }
+            return product;
+        });
 
         // Construct the final response object
         const response = {
-            store: storeResult[0],
-            products: productsResult,
+            store: store,
+            products: rewrittenProducts,
             totalProducts: totalProducts,
             totalPages: Math.ceil(totalProducts / limit)
         };

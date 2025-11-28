@@ -38,7 +38,7 @@ For a detailed explanation of the project architecture and the search process, p
 *   **Node.js Backend:** A robust backend built with Express.js to handle API requests.
 *   **Python ML Integration:** A persistent Python Flask server that handles all machine learning computations.
 *   **Dynamic Frontend:** A simple and clean user interface built with HTML, CSS, and JavaScript.
-*   **Offline Image Placeholders:** Dynamically generated SVG placeholder images for products are now served locally, improving offline usability and reducing external dependencies.
+*   **Offline Image Placeholders:** Dynamically generated SVG placeholder images for products, store images, and store banners are now served locally, improving offline usability and reducing external dependencies.
 *   **Improved Code Readability:** Added detailed comments to the frontend and backend JavaScript files (`public/script.js`, `public/store.js`, and `server/server.js`) to improve code clarity, maintainability, and ease of understanding for developers.
 
 ## Table of Contents
