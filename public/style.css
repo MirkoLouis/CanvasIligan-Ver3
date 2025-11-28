@@ -18,18 +18,15 @@ body {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Center content vertically before search */
-    padding-top: 10vh; /* Give some space from the top */
-    transition: all 0.6s ease;
+    padding-top: 30vh; 
+    transition: padding-top 1s cubic-bezier(0.4, 0, 0.2, 1); 
 }
 
 body.search-active .content-wrapper {
-    justify-content: flex-start; /* Move content to top after search */
     padding-top: 2rem;
 }
 
 main {
-    /* No longer absolute */
     width: 90vw;
     max-width: 800px;
     margin-left: auto;
@@ -58,7 +55,6 @@ body.search-active header h1 {
 }
 
 .subtitle {
-    /* No longer absolute */
     position: relative;
     width: 100%;
     margin-top: 1.5rem;
@@ -225,7 +221,6 @@ body.search-active #results-container {
 }
 
 #loading-spinner {
-    /* Now part of the normal flow, no absolute positioning needed */
     z-index: 10;
 }
 
@@ -276,12 +271,10 @@ body.search-active #results-container {
 }
 
 .footer {
-    /* No longer absolute */
     width: 100%;
     color: #70757a;
     background-color: #8491D9;
     padding: 1rem 0;
-    /* margin-top: auto; is handled by .content-wrapper flex-grow */
 }
 
 .footer-content {
@@ -308,7 +301,6 @@ body.search-active #results-container {
 }
 
 body.search-active .footer {
-    /* Footer is always visible now in the new layout */
     opacity: 1;
     pointer-events: auto;
 }
@@ -316,7 +308,7 @@ body.search-active .footer {
 /* --- Mobile Responsiveness --- */
 @media (max-width: 768px) {
     :root {
-        --logo-font-size: 3.5em; /* Reduce base logo size on mobile */
+        --logo-font-size: 3.5em;
     }
 
     .content-wrapper {
@@ -328,16 +320,16 @@ body.search-active .footer {
     }
 
     body.search-active header h1 {
-        font-size: calc(var(--logo-font-size) * 0.7); /* Adjust search active size */
+        font-size: calc(var(--logo-font-size) * 0.7);
     }
 
     #results-container {
-        max-width: 95%; /* Use more of the screen */
+        max-width: 95%;
     }
 
     .footer-content {
-        flex-direction: column; /* Stack footer items vertically */
-        gap: 1rem; /* Add space between stacked items */
+        flex-direction: column;
+        gap: 1rem;
         max-width: 95%;
         text-align: center;
     }
