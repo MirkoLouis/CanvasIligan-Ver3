@@ -3,17 +3,19 @@ from sentence_transformers import SentenceTransformer, util
 import numpy as np
 import sys
 import json
+import os
+from dotenv import load_dotenv
 
 # This script performs a semantic search on the products in the database.
 def semantic_search(query):
     try:
         # Connect to the database
         connection = mysql.connector.connect(
-            host='MirkoLouis',
-            port=3306,
-            user='MirkoLouis',
-            password='One5zero03',
-            database='canvasiligan_db'
+            host=os.getenv('DB_HOST'),
+            port=os.getenv('DB_PORT'),
+            user=os.getenv('DB_USER'),
+            password=os.getenv('DB_PASSWORD'),
+            database=os.getenv('DB_NAME')
         )
         cursor = connection.cursor(dictionary=True)
 

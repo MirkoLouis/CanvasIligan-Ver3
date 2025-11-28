@@ -63,7 +63,7 @@ For a detailed explanation of the project architecture and the search process, p
     ```bash
     python -m venv .venv
     .\.venv\Scripts\activate
-    pip install sentence-transformers mysql-connector-python numpy Flask faiss-cpu torch
+    pip install sentence-transformers mysql-connector-python numpy Flask faiss-cpu torch nltk
     ```
 
 4.  **Set up the database:**

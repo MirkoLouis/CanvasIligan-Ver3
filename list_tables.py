@@ -1,14 +1,16 @@
 import mysql.connector
+import os
+from dotenv import load_dotenv
 
 # This script connects to the database and lists the tables.
 def list_tables():
     try:
         connection = mysql.connector.connect(
-            host='MirkoLouis',
-            port=3306,
-            user='MirkoLouis',
-            password='One5zero03',
-            database='canvasiligan_db'
+            host=os.getenv('DB_HOST'),
+            port=os.getenv('DB_PORT'),
+            user=os.getenv('DB_USER'),
+            password=os.getenv('DB_PASSWORD'),
+            database=os.getenv('DB_NAME')
         )
         cursor = connection.cursor()
         cursor.execute("SHOW TABLES")

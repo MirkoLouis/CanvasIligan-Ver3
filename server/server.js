@@ -83,6 +83,21 @@ app.get('/api/categories', (req, res) => {
 });
 
 /**
+ * @route GET /api/stores
+ * @description Fetches all stores from the database, ordered by name.
+ */
+app.get('/api/stores', (req, res) => {
+    const query = 'SELECT store_id, store_name FROM store ORDER BY store_name';
+    db.query(query, (error, results) => {
+        if (error) {
+            console.error('Database stores error:', error);
+            return res.status(500).send({ error: 'Internal server error' });
+        }
+        res.json(results);
+    });
+});
+
+/**
  * @route GET /api/search
  * @description The main search endpoint. It receives a query, calls the Python ML service
  *              to get relevant product IDs, and then "hydrates" these IDs with full

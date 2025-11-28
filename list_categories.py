@@ -1,12 +1,14 @@
 import mysql.connector
+import os
+from dotenv import load_dotenv
 
 try:
     connection = mysql.connector.connect(
-        host='MirkoLouis',
-        port=3306,
-        user='MirkoLouis',
-        password='One5zero03',
-        database='canvasiligan_db'
+        host=os.getenv('DB_HOST'),
+        port=os.getenv('DB_PORT'),
+        user=os.getenv('DB_USER'),
+        password=os.getenv('DB_PASSWORD'),
+        database=os.getenv('DB_NAME')
     )
     cursor = connection.cursor(dictionary=True)
     cursor.execute("SELECT category_id, category_name FROM category ORDER BY category_id")

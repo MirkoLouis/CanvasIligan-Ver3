@@ -396,4 +396,53 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initializations
     initializeCategories(); // Call to populate the category filter when the page loads
+
+    // --- Discover Stores Dropdown Functionality ---
+    const discoverStoresBtn = document.getElementById('discover-stores-btn');
+    const storesDropdown = document.getElementById('stores-dropdown');
+
+    /**
+     * @async
+     * @function initializeStoresDropdown
+     * @description Fetches all stores and populates the "Discover All Stores" dropdown menu.
+     */
+    async function initializeStoresDropdown() {
+        try {
+            const response = await fetch('/api/stores');
+            if (!response.ok) throw new Error('Failed to fetch stores');
+            const stores = await response.json();
+
+            storesDropdown.innerHTML = ''; // Clear any existing items
+            if (stores.length > 0) {
+                stores.forEach(store => {
+                    const link = document.createElement('a');
+                    link.className = 'dropdown-item';
+                    link.href = `store.html?store_id=${store.store_id}`;
+                    link.textContent = store.store_name;
+                    storesDropdown.appendChild(link);
+                });
+            } else {
+                storesDropdown.innerHTML = '<a class="dropdown-item disabled">No stores found</a>';
+            }
+        } catch (error) {
+            console.error('Error initializing stores dropdown:', error);
+            storesDropdown.innerHTML = '<a class="dropdown-item disabled">Could not load stores</a>';
+        }
+    }
+
+    // Event listener to toggle the dropdown's visibility
+    discoverStoresBtn.addEventListener('click', (event) => {
+        event.stopPropagation(); // Prevent the window click listener from immediately closing it
+        storesDropdown.classList.toggle('show');
+    });
+
+    // Event listener to close the dropdown when clicking anywhere else on the page
+    window.addEventListener('click', () => {
+        if (storesDropdown.classList.contains('show')) {
+            storesDropdown.classList.remove('show');
+        }
+    });
+    
+    initializeStoresDropdown(); // Call to populate the stores dropdown
+
 });
