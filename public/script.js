@@ -170,6 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="flex-grow-1">
                         <p class="result-title">${product.product_name}</p>
                         <p class="result-price mb-0"><span class="product-price">${priceHtml}</span></p>
+                        <small class="product-disclaimer">Prices are estimates subject to store changes. Please budget accordingly.</small>
                         <p class="result-description">${fullDescription}</p>
                         ${storesHtml}
                     </div>
@@ -294,6 +295,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <h3>${productName}</h3>
                     <p>${productDesc}</p>
                     ${priceHtml}
+                    <small class="product-disclaimer">Prices are estimates subject to store <br>changes. Please budget accordingly.</small>
                 </div>
             `;
 

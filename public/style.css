@@ -220,6 +220,15 @@ body.search-active #results-container {
     font-weight: bold;
 }
 
+.product-disclaimer {
+    font-size: 1rem;
+    background-color: #fff3cd; /* Pale yellow background */
+    color: #856404;            /* Dark yellow text */
+    padding: 5px 10px;
+    border-radius: 4px;
+    border: 1px solid #ffeeba;
+    display: inline-block;     /* Hugs the text */
+}
 
 .store-name {
     font-size: 1.25em;
