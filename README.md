@@ -11,21 +11,30 @@ CanvasIligan is a project designed to solve the problem of finding specific prod
 For a detailed explanation of the project architecture and the search process, please see the [Project Overview](PROJECT_OVERVIEW.md).
 
 ### Key Features
+Homepage
 
-*   **Product Price Ranging:** Products now have varied prices across different stores (with a 1-5% variation), and search results display the price range, while store-specific views show the exact price.
-*   **Enhanced Store Details:** Store pages now display comprehensive information including contact number, office hours (days and time), and a dedicated store image.
-*   **Back Navigation:** A convenient back button on store pages allows users to easily return to their previous search results.
-*   **Optimized & Enhanced Hover Popup:** The store hover feature now displays a split view with detailed store information and relevant product details (including product price at that store) in an optimized single API call.
-*   **Scalable Semantic Search:** Powered by sentence-transformer models and a Faiss index to provide fast, scalable, and accurate natural language search.
+Search Results
+
+Store Page
+
+### Key Features
+
+*   **Scalable Semantic Search:** Powered by sentence-transformers models and a Faiss index to provide fast, scalable, and accurate natural language search.
 *   **Intelligent Keyword Boosting:** Employs a tiered, stemmer-based, and additive keyword boosting system. It correctly identifies generic terms (e.g., "module," "tool"), sums the boost for each matching keyword, and prioritizes products that match more specific terms in the query. This significantly improves relevance for multi-word searches (e.g., "vibrator module" vs. "vibration motor") over pure semantic similarity.
 *   **Conditional Search Logic:** The system can now distinguish between specific product queries and broad, project-based queries (e.g., "materials to build a robot").
 *   **Project-Based Result Ordering:** For project-based queries, search results are automatically organized into a "starter kit" format. Products are grouped by relevance (e.g., "The Brain," "Moving Parts," "Tools"), with a limited preview from each category shown first to ensure a diverse initial result set. The full list of all relevant products follows this preview, ensuring no results are omitted. For specific queries, this organizational logic is skipped.
+*   **Product Price Ranging:** Products now have varied prices across different stores (with a 1-5% variation), and search results display the price range, while store-specific views show the exact price.
+*   **Multi-Store Product Availability:** Products can be associated with multiple stores, and search results clearly display all available locations.
+*   **Discover All Stores Feature:** A dropdown list on the main page allows users to quickly navigate to any store page.
+*   **Enhanced Store Details:** Store pages now display comprehensive information including contact number, office hours (days and time), and a dedicated store image.
+*   **Back Navigation:** A convenient back button on store pages allows users to easily return to their previous search results.
+*   **Optimized & Enhanced Hover Popup:** The store hover feature now displays a split view with detailed store information and relevant product details (including product price at that store) in an optimized single API call.
 *   **Server-Side Category Filtering:** Filter search results by category on the backend for efficient and accurate refinement of paginated results.
 *   **Pagination:** A classic and intuitive pagination system to navigate through search results.
-*   **Multi-Store Product Availability:** Products can be associated with multiple stores, and search results clearly display all available locations.
 *   **Node.js Backend:** A robust backend built with Express.js to handle API requests.
 *   **Python ML Integration:** A persistent Python Flask server that handles all machine learning computations.
 *   **Dynamic Frontend:** A simple and clean user interface built with HTML, CSS, and JavaScript.
+*   **Offline Image Placeholders:** Dynamically generated SVG placeholder images for products are now served locally, improving offline usability and reducing external dependencies.
 *   **Improved Code Readability:** Added detailed comments to the frontend and backend JavaScript files (`public/script.js`, `public/store.js`, and `server/server.js`) to improve code clarity, maintainability, and ease of understanding for developers.
 
 ## Table of Contents

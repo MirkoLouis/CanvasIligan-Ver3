@@ -98,6 +98,34 @@ app.get('/api/stores', (req, res) => {
 });
 
 /**
+ * @route GET /api/placeholder/product
+ * @description Generates a dynamic SVG placeholder image for a product.
+ * @query {string} text - The text to display on the placeholder.
+ */
+app.get('/api/placeholder/product', (req, res) => {
+    const { text = 'No Image' } = req.query;
+    const width = 300;
+    const height = 300;
+    const backgroundColor = '#EEEEEE';
+    const textColor = '#333333';
+    const fontSize = 40;
+
+    // Sanitize text to prevent potential XSS in SVG
+    const sanitizedText = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+    const svg = `
+        <svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
+            <rect width="100%" height="100%" fill="${backgroundColor}" />
+            <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="${textColor}" font-size="${fontSize}" font-family="sans-serif">
+                ${sanitizedText}
+            </text>
+        </svg>
+    `;
+    res.setHeader('Content-Type', 'image/svg+xml');
+    res.send(svg);
+});
+
+/**
  * @route GET /api/search
  * @description The main search endpoint. It receives a query, calls the Python ML service
  *              to get relevant product IDs, and then "hydrates" these IDs with full
@@ -171,15 +199,32 @@ app.get('/api/search', searchLimiter, async (req, res) => {
         console.error(`[${new Date().toISOString()}] Database search error:`, error);
         return res.status(500).send({ error: 'Internal server error' });
       }
+
+      // Rewrite image URLs to use the local placeholder service
+      const rewrittenResults = results.map(product => {
+        if (product.product_image_url && product.product_image_url.includes('placehold.co')) {
+            try {
+                const url = new URL(product.product_image_url);
+                const text = url.searchParams.get('text');
+                if (text) {
+                    product.product_image_url = `/api/placeholder/product?text=${encodeURIComponent(text)}`;
+                }
+            } catch (e) {
+                // Ignore URL parsing errors and leave the original URL
+                console.error(`Error parsing placeholder URL: ${product.product_image_url}`, e);
+            }
+        }
+        return product;
+      });
       
       const duration = process.hrtime(startTime); // End performance timer
       const durationInMs = (duration[0] * 1000 + duration[1] / 1e6).toFixed(2);
       
-      console.info(`[${new Date().toISOString()}] Database query successful. Found ${results.length} products.`);
+      console.info(`[${new Date().toISOString()}] Database query successful. Found ${rewrittenResults.length} products.`);
       console.info(`[${new Date().toISOString()}] Search complete. Total time: ${durationInMs}ms. Sending results.`);
       
-      // Send the final hydrated product data and total count back to the client.
-      res.json({ products: results, total: total });
+      // Send the final hydrated and rewritten product data and total count back to the client.
+      res.json({ products: rewrittenResults, total: total });
     });
   } catch (error) {
     console.error('Error calling Python search service:', error.message);
