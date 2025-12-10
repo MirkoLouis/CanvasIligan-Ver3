@@ -16,7 +16,7 @@ For a detailed explanation of the project architecture and the search process, p
 <img width="1910" height="880" alt="Homepage" src="https://github.com/user-attachments/assets/5b30513c-3ad2-4a7b-baad-0ca37d5e3968" />
 
 #### Search Results
-<img width="1910" height="880" alt="Search Results" src="https://github.com/user-attachments/assets/712eb7ad-ea0d-4001-9753-75284ce7346e" />
+<img width="1912" height="920" alt="Search Results" src="https://github.com/user-attachments/assets/97607ed9-114f-484c-ab99-09e095027d75" />
 
 #### Store Page
 <img width="1910" height="880" alt="Store Page" src="https://github.com/user-attachments/assets/ba0cdcf1-a8e3-4ace-8e47-935d41aeefbd" />
