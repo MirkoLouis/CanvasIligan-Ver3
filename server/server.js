@@ -16,7 +16,7 @@ const rateLimit = require('express-rate-limit'); // Middleware for rate-limiting
 const app = express();
 const port = 3000;
 app.disable('x-powered-by'); // Disable the X-Powered-By header for security (to not reveal server technology)
-const PYTHON_API_URL = 'http://localhost:5000/search'; // URL for the Python machine learning microservice
+const PYTHON_API_URL = process.env.PYTHON_API_URL || 'http://localhost:5000/search'; // URL for the Python machine learning microservice
 
 // --- Rate Limiting Setup ---
 // Set up tiered rate limiting to protect the server from brute-force attacks and abuse.

@@ -1,0 +1,9 @@
+flask
+sentence-transformers
+mysql-connector-python
+numpy
+faiss-cpu
+torch
+nltk
+python-dotenv
+gunicorn
