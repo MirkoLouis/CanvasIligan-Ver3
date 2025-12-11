@@ -227,5 +227,4 @@ def search():
         print(f"[ERROR] An error occurred during search: {e}")
         return jsonify({"error": "An internal error occurred in the search service"}), 500
 
-if __name__ == '__main__':
-    app.run(port=5000)
+
