@@ -137,6 +137,12 @@ This will start the Node.js server on `http://localhost:3000`. Open your browser
 
 To run the servers in development mode, follow the [Quick Start](#quick-start) instructions. The `npm start` command uses `nodemon` to automatically restart the Node.js server on file changes.
 
+For the Python service, while `gunicorn` is the standard way to run the server, you can also run it directly for quick debugging tasks:
+```bash
+python wsgi.py
+```
+This uses Flask's built-in development server, which can be helpful for its interactive debugger. However, for any regular development or testing that mimics the production environment, you should use the `gunicorn` command from the Quick Start section.
+
 ### Scripts
 
 This project includes several Python scripts for managing the machine learning components:

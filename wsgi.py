@@ -12,6 +12,5 @@ monkey.patch_all()
 from semantic_search_server import app
 
 if __name__ == "__main__":
-    # This allows running the app directly for simple testing, 
-    # but gunicorn should be used for production.
+    # This allows running the app directly for simple testing, but gunicorn should be used for production.
     app.run()
