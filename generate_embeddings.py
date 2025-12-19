@@ -2,7 +2,6 @@ import mysql.connector
 from sentence_transformers import SentenceTransformer
 import numpy as np
 import os
-from dotenv import load_dotenv
 
 # This script connects to the database, generates embeddings for products, and stores them in the database.
 def generate_embeddings(model=None):
@@ -89,4 +88,6 @@ def generate_embeddings(model=None):
             connection.close()
 
 if __name__ == '__main__':
+    from dotenv import load_dotenv
+    load_dotenv()
     generate_embeddings()

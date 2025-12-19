@@ -46,7 +46,7 @@ model = SentenceTransformer('all-MiniLM-L6-v2')
 print("Model loaded.")
 
 # Automatically generate embeddings for any products that are missing them
-generate_embeddings(model=model)
+# generate_embeddings(model=model)
 
 print("Loading product data from DB...")
 connection = mysql.connector.connect(

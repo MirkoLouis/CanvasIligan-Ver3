@@ -76,7 +76,7 @@ For a detailed explanation of the project architecture and the search process, p
     ```bash
     python -m venv .venv
     .\.venv\Scripts\activate
-    pip install sentence-transformers mysql-connector-python numpy Flask faiss-cpu torch nltk
+    pip install -r requirements.txt
     ```
 
 4.  **Set up the database:**
@@ -85,11 +85,19 @@ For a detailed explanation of the project architecture and the search process, p
     *   Execute the `canvasiligan data.sql` script to populate initial data.
     *   Update the database credentials in `semantic_search_server.py` and `server/db.js`.
 
-5.  **Generate embeddings for the products:**
-    Run the `generate_embeddings.py` script to generate and store the embeddings for the products.
-    ```bash
-    .\.venv\Scripts\python.exe generate_embeddings.py
-    ```
+
+
+## Manual Maintenance Tasks
+
+### Generating Product Embeddings
+
+Whenever you add or significantly update products in your database, you must regenerate the search index for them to be included in semantic search results.
+
+Run the `generate_embeddings.py` script manually:
+```bash
+source .venv/bin/activate
+python generate_embeddings.py
+```
 
 ## Quick Start
 
@@ -97,11 +105,17 @@ To start the application, you need to run two services in separate terminals.
 
 **Terminal 1: Start the Python Search Service**
 ```bash
-.\.venv\Scripts\activate
-.\.venv\Scripts\python.exe semantic_search_server.py
+# On Linux/macOS
+source .venv/bin/activate
+gunicorn --config gunicorn.conf.py wsgi:app
+
+# On Windows
+source .venv/Scripts/activate
+# gunicorn is not officially supported on Windows, but waitress can be used:
+waitress-serve --host 127.0.0.1 --port 5000 wsgi:app
 ```
-This service loads the machine learning model and Faiss index, handling all search computations.
-**Note:** For prototyping, this service uses the basic Flask development server. For production deployments, it is highly recommended to use a production-grade WSGI server (e.g., Gunicorn, uWSGI) to handle concurrent requests efficiently.
+This service loads the machine learning model and Faiss index into memory, handling all search computations.
+**Note:** For production deployments, it is highly recommended to use a production-grade WSGI server like Gunicorn (for Linux/macOS) or Waitress (for Windows) to handle concurrent requests efficiently.
 
 **Terminal 2: Start the Node.js Backend**
 ```bash
@@ -127,7 +141,7 @@ To run the servers in development mode, follow the [Quick Start](#quick-start) i
 
 This project includes several Python scripts for managing the machine learning components:
 
-*   `semantic_search_server.py`: A persistent Flask server that loads the ML model and a Faiss index into memory. It serves search results via a `/search` API endpoint, providing highly scalable and fast responses.
+*   `semantic_search_server.py`: A persistent Flask server that loads the ML model and a Faiss index into memory. It is run using a WSGI server like Gunicorn, and its settings can be configured in `gunicorn.conf.py`. It serves search results via a `/search` API endpoint, providing highly scalable and fast responses.
 *   `generate_embeddings.py`: Connects to the database, generates embeddings for products, and stores them in the `products` table.
 *   `semantic_search.py`: A legacy script that performs a one-off semantic search. It is no longer used by the main application but can be useful for direct testing.
 
@@ -140,6 +154,30 @@ The application has been hardened against common web vulnerabilities by implemen
 *   **CORS Configuration:** Cross-Origin Resource Sharing is restricted to only allow requests from the frontend application.
 *   **Header Security:** The `X-Powered-By` header is disabled to avoid leaking information about the server technology.
 *   **API Rate Limiting:** A tiered rate-limiting strategy is implemented to protect against abuse and ensure server stability. A global limit of 500 requests per 15 minutes applies to all routes, while the `/api/search` endpoint has a stricter limit of 20 requests per minute.
+
+## Networking, CORS, and Tunnels
+
+This application is configured to work seamlessly for both local development and when shared externally via a tunnel (like VS Code's local tunneling feature).
+
+### Dynamic CORS Policy
+
+The server's Cross-Origin Resource Sharing (CORS) policy is not hardcoded. It dynamically accepts requests from the following origins:
+- Any `localhost` address on any port (e.g., `http://localhost:3000`).
+- Any subdomain ending in `.devtunnels.ms`, which is used by VS Code for its tunneling feature.
+
+This allows you and your friends to access the application from different URLs without running into CORS errors.
+
+### Dynamic Content Security Policy (CSP)
+
+The application's CSP is also generated dynamically for every request. It inspects the request headers (specifically `x-forwarded-host` and `x-forwarded-proto`, which are set by tunnels) to determine the exact URL you are using to access the site. It then generates a policy that explicitly allows your browser to connect to the backend services using that same tunneled URL.
+
+This ensures that even when the application is accessed from a temporary, random URL, the browser's security policies adapt and allow the frontend to communicate with the backend.
+
+### `ECONNREFUSED` Error
+
+If you see an `ECONNREFUSED` error, it typically means one of two things:
+1.  A required service (like the MySQL database or the Python Gunicorn server) is not running.
+2.  A service is configured to use `localhost`, and your system is resolving it to an IPv6 address (`::1`) that the service isn't listening on. The code has been updated to use `127.0.0.1` to prevent this, but it's a good first place to check if you encounter connection issues.
 
 ## License
 

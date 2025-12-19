@@ -16,7 +16,7 @@ const rateLimit = require('express-rate-limit'); // Middleware for rate-limiting
 const app = express();
 const port = 3000;
 app.disable('x-powered-by'); // Disable the X-Powered-By header for security (to not reveal server technology)
-const PYTHON_API_URL = process.env.PYTHON_API_URL || 'http://localhost:5000/search'; // URL for the Python machine learning microservice
+const PYTHON_API_URL = process.env.PYTHON_API_URL || 'http://127.0.0.1:5000/search'; // URL for the Python machine learning microservice
 
 // --- Rate Limiting Setup ---
 // Set up tiered rate limiting to protect the server from brute-force attacks and abuse.
@@ -45,12 +45,28 @@ app.use(globalLimiter);
 // --- Security Headers Middleware ---
 // Sets important security headers for all responses to mitigate common web vulnerabilities.
 app.use((req, res, next) => {
+  // Dynamically determine the application's origin, especially for tunnels
+  const proto = req.get('x-forwarded-proto') || 'http';
+  const host = req.get('x-forwarded-host') || req.get('host');
+  const selfOrigin = `${proto}://${host}`;
+
+  // Dynamically determine the Python service origin
+  const pythonHost = host.replace('3000', '5000'); // Assume Python service is on the same domain but different port
+  const pythonOrigin = `${proto}://${pythonHost}`;
+  
   // Content Security Policy (CSP) helps prevent XSS attacks by defining trusted sources for content.
-  res.setHeader(
-    'Content-Security-Policy',
-    // Defines allowed sources for various types of content
-    "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://tiles.openfreemap.org; connect-src 'self' http://localhost:5000 https://tiles.openfreemap.org; img-src 'self' http://localhost:3000 https://via.placeholder.com https://placehold.co blob: data: https://tiles.openfreemap.org; font-src 'self' https://tiles.openfreemap.org; worker-src 'self' blob:; frame-src 'self';"
-  );
+  const csp = [
+    "default-src 'self'",
+    "script-src 'self' 'unsafe-inline'", // 'unsafe-inline' is needed for inline event handlers, consider refactoring
+    "style-src 'self' 'unsafe-inline' https://tiles.openfreemap.org",
+    `connect-src 'self' ${pythonOrigin} https://tiles.openfreemap.org`,
+    `img-src 'self' ${selfOrigin} https://via.placeholder.com https://placehold.co blob: data: https://tiles.openfreemap.org`,
+    "font-src 'self' https://tiles.openfreemap.org",
+    "worker-src 'self' blob:",
+    "frame-src 'self'",
+  ].join('; ');
+
+  res.setHeader('Content-Security-Policy', csp);
   // X-Frame-Options prevents clickjacking attacks by disallowing the page to be embedded in iframes.
   res.setHeader('X-Frame-Options', 'DENY');
   next();
@@ -58,9 +74,28 @@ app.use((req, res, next) => {
 
 // --- General Middleware Setup ---
 // This block configures middleware for CORS, body parsing, and serving static files.
+
+// Configure a flexible CORS policy for development and tunneling
+const allowedOrigins = [
+  /^http:\/\/localhost(:\d+)?$/, // Allows localhost with any port
+  /\.devtunnels\.ms$/, // Allows VS Code tunnel URLs
+];
+
 app.use(cors({
-  origin: 'http://localhost:3000' // Restrict requests to the application's own origin
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    
+    // Check if the origin is in our allowed list
+    if (allowedOrigins.some(pattern => pattern.test(origin))) {
+      return callback(null, true);
+    }
+    
+    // If not allowed, reject the request
+    return callback(new Error('The CORS policy for this site does not allow access from the specified Origin.'), false);
+  }
 }));
+
 app.use(bodyParser.json()); // Parse JSON-formatted request bodies
 app.use(express.static('public')); // Serve static files from the 'public' directory (e.g., HTML, CSS, JS)
 app.use('/bootstrap', express.static('node_modules/bootstrap')); // Serve Bootstrap files from node_modules
