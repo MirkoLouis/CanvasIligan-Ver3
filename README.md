@@ -185,6 +185,13 @@ If you see an `ECONNREFUSED` error, it typically means one of two things:
 1.  A required service (like the MySQL database or the Python Gunicorn server) is not running.
 2.  A service is configured to use `localhost`, and your system is resolving it to an IPv6 address (`::1`) that the service isn't listening on. The code has been updated to use `127.0.0.1` to prevent this, but it's a good first place to check if you encounter connection issues.
 
+## Version history
+
+| Version | Where |
+|---|---|
+| Ver3 (final) | this repository's `main` branch |
+| v1 prototype (AI Studio, TypeScript/Vite) | tag [`v1-prototype`](https://github.com/MirkoLouis/CanvasIligan-Ver3/tree/v1-prototype), with history imported from the archived [MirkoLouis/CanvasIligan](https://github.com/MirkoLouis/CanvasIligan) |
+
 ## License
 
 This project is licensed under the ISC License. See the [LICENSE](LICENSE) file for details.
